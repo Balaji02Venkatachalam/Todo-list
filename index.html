@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Todo List</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="container">
+    <h1>Create Your Todo List in a minute</h1>
+    <div class="add_task"><input id="in" placeholder="enter your task">
+        <button onclick="add()" id="btn">Add Task</button>
+    </div>
+    <section><div>
+        <div><ul id="list">
+         <h1> Tasks to Complete</h1>
+        </ul></div>
+        <hr style="margin: 30px;">
+        <div><ul id="rlist">
+         <h1>Completed tasks</h1>
+        </ul>
+        </div>
+        </div>
+    </section>
+
+    <script>
+        var inside = document.getElementById("in")
+        var list = document.getElementById("list")
+        var outside=document.getElementById("rlist")
+        var del=null
+        function add() {
+            if (inside.value != "") {
+                var h = document.createElement("li")
+                h.innerHTML = inside.value + " &nbsp;&nbsp;&nbsp;" + "<button style='background-color:rgba(255,0,0,0.5)' onclick='deleteItem(event)'>Delete task</button>"
+                list.append(h)
+                inside.value = ""
+                alert("New task have been added")
+            }
+        }
+        function deleteItem(event) {
+            var s=event.target.parentElement.textContent
+            event.target.parentElement.remove()
+            s=s.split("Delete task").join("")
+            console.log(s)
+            event.target.remove()
+            console.log(s)
+            var h = document.createElement("li")
+                h.textContent = s
+               outside.append(h)
+               alert("A task have been Deleted")
+        }
+        </script>
+</body>
+
+</html>
